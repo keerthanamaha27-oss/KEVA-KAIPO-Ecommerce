@@ -1,73 +1,155 @@
-# AyurVeda Naturals — Authentic Ayurvedic E-Commerce & Social Commerce Platform
-## CSI3029: Front End Design and Testing — TH Assessment 1
-**Faculty:** Dr. V. Arulkumar (18875)  
-**Submission Due Date:** 25-Sep-2026  
-**Role:** Digital Solutions Consultant  
-**Project Directory:** `C:\Users\Administrator\.gemini\antigravity\scratch\ayur-veda-store`
+# KEVA KAIPO – Ayurvedic E-Commerce Website
+
+**Business Name:** SRI MAHALAKSHMI & CO.  
+**Brand Name:** KEVA KAIPO
 
 ---
 
-## 🌟 Executive Summary
-**AyurVeda Naturals** is a responsive, multi-page e-commerce and social commerce web application developed to modernize a real physical Ayurvedic products apothecary. It incorporates:
-- **Classical Ayurvedic Formulation Showcase:** Pure Himalayan Shilajit, KSM-66 Ashwagandha, Ashtanga Kumkumadi Tailam, Swarna Chyawanprash Supreme, and Triphala.
-- **Social Commerce Direct Ordering:**
-  - Direct Instagram Storefront link (`@ayur.veda.wellness`)
-  - 1-Click WhatsApp Order generator (`+91 98765 43210`) with prefilled botanical item descriptions & prices
-  - Tap-to-call mobile phone link (`tel:+919876543210`)
-- **Automated Email Order Confirmation & Store Admin Verification:**
-  - Automated HTML Tax Invoice email dispatched to customer and apothecary upon checkout
-  - Interactive email inspection modal
-  - Store Admin Order Management Portal (`admin-orders.html`) to transition order states (`Placed` &rarr; `Approved` &rarr; `Shipped`)
-- **Automated Front-End Testing Suite:** 14 programmatic test cases at `tests/test-suite.html` verifying cart algorithms, 5% GST taxation, promo vouchers (`AYUR10`, `VEDA150`), and form validation.
-- **Academic Assessment Report & PDF:** Complete academic report ready for VTOP upload (`CSI3029_Assessment1_AyurVeda_Report.pdf`).
+## Executive Summary
+
+**KEVA KAIPO** is a responsive, multi-page Ayurvedic e-commerce website developed for **SRI MAHALAKSHMI & CO.** The platform provides customers with a convenient online shopping experience for exploring Ayurvedic products, viewing product information, managing shopping carts and wishlists, and placing orders.
+
+The website combines a clean interface, product catalogue, shopping functionality and an administrative order management interface.
+
+### Key Features
+
+- **Responsive Storefront:** User-friendly homepage with product highlights and navigation.
+- **Product Catalogue:** Browse available Ayurvedic products and view their details.
+- **Product Details:** Individual product descriptions, pricing and availability.
+- **Shopping Cart:** Add, remove and update product quantities.
+- **Wishlist:** Save products for future reference.
+- **Customer Checkout:** Enter customer and delivery information to place orders.
+- **Order Confirmation:** View order confirmation information after checkout.
+- **Admin Order Management:** View recorded orders and manage their statuses.
+- **Contact Information:** Access business contact details and enquiry interface.
+- **Automated Testing Interface:** Test selected website functionality through the testing dashboard.
 
 ---
 
-## 📁 Project Architecture & Page Inventory
+## Project Architecture and Page Inventory
 
-| File | Purpose & Description |
-| :--- | :--- |
-| `index.html` | **Storefront Home Page**: Hero banner, Ayurvedic categories, Best sellers, Customer testimonials, Sticky WhatsApp/Instagram buttons |
-| `about.html` | **Heritage & Science**: Tri-Dosha philosophy, Sourcing geography (Himalayas, Kashmir, Kerala), Vaidya Advisory Board, Lab certifications |
-| `products.html` | **Formulations Catalogue**: Multi-filter by health concern, Tridoshic balance, Price range slider, Search bar, Quick View modal |
-| `product-detail.html` | **Deep-Dive Specifications**: Dynamic query param (`?id=AVN-101`), Dosage instructions (Anupana), Ingredients, WhatsApp direct buy |
-| `cart.html` | **Shopping Basket**: Dynamic quantity controls, Free shipping progress tracker, Vedic coupon codes (`AYUR10`, `VEDA150`), 1-Click WhatsApp buy |
-| `checkout.html` | **Delivery & Payment**: Customer address validation, Phone pattern, Payment mode selection (UPI, COD, Card) |
-| `order-confirmation.html` | **Order Confirmation & Tax Invoice**: Unique Order ID (`AVN-2026-XXXX`), Print-ready tax invoice, Dispatched HTML email preview |
-| `contact.html` | **Apothecary Clinic**: Store address, Tap-to-call phone, Tele-consultation appointment booking, FAQs accordion |
-| `wishlist.html` | **Saved Remedies**: Saved products from `localStorage`, Move to Cart, Remove item |
-| `admin-orders.html` | **Store Admin Portal**: Order verification queue, Placed &rarr; Approved status transitions, Gross revenue metrics |
-| `tests/test-suite.html` | **Automated Test Suite**: 14 front-end unit and functional test cases (100% Pass rate) |
-| `report.html` | **Academic Report (HTML)**: Print-ready academic documentation |
-| `CSI3029_Assessment1_AyurVeda_Report.pdf` | **Submission PDF**: Final report compiled with Chrome headless ready for VTOP upload |
-| `server.js` | **Local Node.js Server**: Optional zero-dependency static file & email API mock server |
-| `css/style.css` | **Ayurvedic Design System**: Imperial forest green, warm gold, parchment cream, responsive media queries |
-| `js/products-data.js` | **Botanical Dataset**: Authentic Ayurvedic products with botanical classifications, doshas, and lab standards |
-| `js/app.js` | **State Engine**: Cart, Wishlist, WhatsApp/Instagram URL generators, Order service, and Toast notifications |
+| File | Purpose |
+|---|---|
+| `index.html` | Storefront homepage and product highlights |
+| `about.html` | Business and brand information |
+| `products.html` | Product catalogue, search and filtering |
+| `product-detail.html` | Individual product information |
+| `cart.html` | Shopping cart and quantity management |
+| `checkout.html` | Customer checkout and order placement |
+| `order-confirmation.html` | Order confirmation page |
+| `contact.html` | Business contact information and enquiry interface |
+| `wishlist.html` | Saved products and wishlist management |
+| `admin-orders.html` | Administrative order management |
+| `tests/test-suite.html` | Website testing dashboard |
+| `report.html` | Project documentation |
+| `server.js` | Local Node.js development server |
+| `css/style.css` | Website styling and responsive design |
+| `js/products-data.js` | Product information and configuration |
+| `js/app.js` | Cart, wishlist, order and application functionality |
 
 ---
 
-## 🚀 How to Run the Website
+## Technologies Used
 
-### Method 1: Direct Browser Opening (No Server Required)
-Simply double click or open any of the HTML files directly in your web browser:
-- Double-click `index.html` to open the home page.
-- Double-click `tests/test-suite.html` to run the automated tests.
-- Double-click `admin-orders.html` to view the store management portal.
+| Technology | Application |
+|---|---|
+| HTML5 | Website structure |
+| CSS3 | Styling and responsive layouts |
+| JavaScript | Interactive functionality |
+| Node.js | Local development server |
+| Git | Version control |
+| GitHub | Source code hosting |
 
-### Method 2: Running via Local Node.js Server (Port 3000)
-Run the following in PowerShell:
+---
+
+## How to Run the Website
+
+### Method 1: Using Node.js
+
+1. Install Node.js.
+2. Open the project folder in Visual Studio Code.
+3. Open the integrated terminal.
+4. Run the following command:
+
 ```powershell
-cd C:\Users\Administrator\.gemini\antigravity\scratch\ayur-veda-store
-node server.js
+node server.js 8081
 ```
-Then visit:
-- **Storefront:** `http://localhost:3000`
-- **Testing Dashboard:** `http://localhost:3000/tests/test-suite.html`
-- **Admin Portal:** `http://localhost:3000/admin-orders.html`
+
+5. Open your browser and visit:
+
+**Homepage:**  
+http://localhost:8081
+
+**Testing Dashboard:**  
+http://localhost:8081/tests/test-suite.html
+
+**Admin Portal:**  
+http://localhost:8081/admin-orders.html
 
 ---
 
-## 📤 VTOP Submission Deliverables
-1. **PDF File:** `CSI3029_Assessment1_AyurVeda_Report.pdf` is located in this directory and is 100% complete and formatted for VTOP upload.
-2. **Source Code:** All HTML, CSS, JavaScript, and test files are located in this folder.
+## Project Structure
+
+```text
+ayur-veda-store/
+│
+├── index.html
+├── about.html
+├── products.html
+├── product-detail.html
+├── cart.html
+├── wishlist.html
+├── checkout.html
+├── order-confirmation.html
+├── contact.html
+├── admin-orders.html
+├── report.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── app.js
+│   └── products-data.js
+│
+├── images/
+│   └── products/
+│
+├── tests/
+│   └── test-suite.html
+│
+├── server.js
+├── package.json
+├── .gitignore
+└── README.md
+```
+
+---
+
+## GitHub Repository
+
+The project source code is maintained on GitHub for version control, project access and academic reference.
+
+**Repository Name:** KEVA-KAIPO-Ecommerce
+
+**GitHub URL:**  
+https://github.com/keerthanamaha27-oss/KEVA-KAIPO-Ecommerce
+
+---
+
+## Business Information
+
+**Business:** SRI MAHALAKSHMI & CO.  
+**Brand:** KEVA KAIPO  
+**Phone:** +91 8072026733  
+**Email:** keerthanamaha27@gmail.com
+
+---
+
+## Project Objective
+
+The main objective of KEVA KAIPO is to establish a user-friendly online shopping platform for Ayurvedic products. It aims to simplify product discovery, improve the customer shopping experience and provide an interface for managing customer orders.
+
+---
+
+**KEVA KAIPO – SRI MAHALAKSHMI & CO.**
