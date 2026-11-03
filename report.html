@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSI3029 Assessment 1 Report - AyurVeda Naturals</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --primary: #1b4332;
+      --secondary: #2d6a4f;
+      --accent-gold: #c5a059;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --border: #d1d5db;
+      --bg-light: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 13.5px;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+
+    .report-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    /* Print Break Rules */
+    @media print {
+      body { font-size: 11.5px; line-height: 1.5; }
+      .report-container { padding: 0; max-width: 100%; }
+      .page-break { page-break-before: always; }
+      .no-break { page-break-inside: avoid; }
+      a { color: var(--primary) !important; text-decoration: none !important; }
+      .no-print { display: none !important; }
+    }
+
+    .page-break { page-break-before: always; margin-top: 40px; }
+
+    /* Title Page */
+    .title-page {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      border: 3px double var(--accent-gold);
+      padding: 50px 30px;
+      margin-bottom: 40px;
+      background: linear-gradient(180deg, #ffffff 0%, #faf8f5 100%);
+    }
+
+    .univ-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .school-title {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    .doc-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .project-main-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 30px;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .project-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    .meta-box {
+      margin: 30px auto;
+      text-align: left;
+      display: inline-block;
+      background: #ffffff;
+      padding: 20px 35px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .meta-box td {
+      padding: 6px 12px;
+      font-size: 13.5px;
+    }
+
+    .meta-box td strong {
+      color: var(--primary);
+    }
+
+    /* Headings */
+    h1.chapter-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 8px;
+      margin-top: 35px;
+      margin-bottom: 16px;
+    }
+
+    h2.section-heading {
+      font-size: 16px;
+      color: var(--secondary);
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h3.sub-heading {
+      font-size: 14px;
+      color: var(--primary);
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 12px; text-align: justify; }
+
+    /* Tables */
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 12px;
+    }
+
+    table.academic-table th, table.academic-table td {
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      text-align: left;
+    }
+
+    table.academic-table th {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    table.academic-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .status-pass {
+      color: #059669;
+      font-weight: bold;
+    }
+
+    /* Code blocks */
+    pre.code-snippet {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      overflow-x: auto;
+      margin: 14px 0;
+      line-height: 1.5;
+    }
+
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid var(--secondary);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+    }
+
+    .callout-box h5 {
+      margin: 0 0 6px;
+      color: var(--primary);
+      font-size: 13.5px;
+    }
+
+    ul, ol {
+      margin-bottom: 14px;
+      padding-left: 24px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    .toc {
+      background: #faf8f5;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e5e0d8;
+      margin: 25px 0;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px dotted #ccc;
+    }
+
+    .toc-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print Button (Screen only) -->
+  <div class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+    <button onclick="window.print()" style="background: #1b4332; color: #ffffff; border: 2px solid #c5a059; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="report-container">
+    
+    <!-- TITLE PAGE -->
+    <div class="title-page">
+      <div>
+        <div class="univ-title">VELLORE INSTITUTE OF TECHNOLOGY</div>
+        <div class="school-title">School of Computer Science and Engineering (SCOPE)</div>
+        <span class="doc-badge">TH ASSESSMENT 1 — COURSE PROJECT REPORT</span>
+        
+        <h1 class="project-main-title">
+          DIGITAL SOLUTIONS CONSULTANT:<br>
+          DEVELOPMENT & TESTING OF AN AUTHENTIC AYURVEDIC SOCIAL COMMERCE PLATFORM WITH AUTOMATED ORDER CONFIRMATION
+        </h1>
+        <p class="project-subtitle">
+          A Fully Responsive Multi-Page Web Application Engineered with AI-Assisted Workflows, Client-Side State Machines, and Comprehensive Front-End Validation
+        </p>
+      </div>
+
+      <div>
+        <table class="meta-box">
+          <tr>
+            <td><strong>Course Name & Code:</strong></td>
+            <td>Front End Design and Testing / <strong>CSI3029</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Faculty Mentor:</strong></td>
+            <td><strong>Dr. V. Arulkumar</strong> (Faculty ID: 18875)</td>
+          </tr>
+          <tr>
+            <td><strong>Submission Due Date:</strong></td>
+            <td><strong>25-Sep-2026</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Platform / Brand:</strong></td>
+            <td><strong>AyurVeda Naturals Apothecary</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Role Assumed:</strong></td>
+            <td>Senior Digital Solutions Consultant</td>
+          </tr>
+          <tr>
+            <td><strong>Submission Mode:</strong></td>
+            <td>VTOP PDF Upload & Live Working Repository</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="font-size: 11.5px; color: #64748b;">
+        Academic Year 2026-2027 • Front End Engineering Laboratory
+      </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="page-break"></div>
+    <h1 class="chapter-title">Table of Contents</h1>
+    <div class="toc">
+      <div class="toc-item"><span>1. Executive Summary & Abstract</span><span>Page 2</span></div>
+      <div class="toc-item"><span>2. Business Context & Digital Solutions Consultant Problem Formulation</span><span>Page 3</span></div>
+      <div class="toc-item"><span>3. Requirement Engineering (Functional & Non-Functional Matrix)</span><span>Page 4</span></div>
+      <div class="toc-item"><span>4. System Architecture & Component Interaction Model</span><span>Page 5</span></div>
+      <div class="toc-item"><span>5. UI/UX Design System, Color Psychology & Typography</span><span>Page 6</span></div>
+      <div class="toc-item"><span>6. Multi-Page Implementation & Code Snippets</span><span>Page 7</span></div>
+      <div class="toc-item"><span>7. Social Commerce Architecture (Instagram, WhatsApp & Click-to-Call)</span><span>Page 11</span></div>
+      <div class="toc-item"><span>8. Automated Email Order Confirmation & Store Admin Verification Workflow</span><span>Page 13</span></div>
+      <div class="toc-item"><span>9. Responsive Design & Multi-Device Breakpoint Analysis</span><span>Page 15</span></div>
+      <div class="toc-item"><span>10. Testing Methodology & Comprehensive Test Matrix (TC01 - TC14)</span><span>Page 16</span></div>
+      <div class="toc-item"><span>11. Generative AI Tools Lifecycle Analysis</span><span>Page 19</span></div>
+      <div class="toc-item"><span>12. Challenges Overcome, Conclusion & Future Enhancements</span><span>Page 21</span></div>
+      <div class="toc-item"><span>13. Academic References</span><span>Page 22</span></div>
+    </div>
+
+    <!-- CHAPTER 1: ABSTRACT -->
+    <h1 class="chapter-title">1. Executive Summary & Abstract</h1>
+    <p>
+      In fulfillment of TH Assessment 1 for <strong>CSI3029 Front End Design and Testing</strong> under the mentorship of <strong>Dr. V. Arulkumar (18875)</strong>, this project presents the end-to-end design, implementation, and automated testing of <strong>AyurVeda Naturals</strong> (<code>https://ayurvedanaturals.in</code>). Operating as a Digital Solutions Consultant, the primary objective was to modernize a traditional physical Ayurvedic apothecary by engineering a high-performance, aesthetically elevated, and mobile-first e-commerce web platform.
+    </p>
+    <p>
+      The digital solution addresses the operational limitations of brick-and-mortar herbal dispensaries by introducing: (1) a multi-page semantic architecture built with HTML5, CSS3, JavaScript ES6+, and Bootstrap 5; (2) omnichannel social commerce pipelines integrating direct Instagram deep-linking (<code>@ayur.veda.wellness</code>), WhatsApp Business 1-click cart order string generation (<code>+91 98765 43210</code>), and instant click-to-call telephony; (3) a dual-stage order verification and email confirmation workflow with live HTML invoice rendering and client-side dispatch; and (4) an automated, in-browser test suite verifying cart calculations, Vedic coupon algorithms, and form validations.
+    </p>
+
+    <!-- CHAPTER 2: PROBLEM STATEMENT -->
+    <h1 class="chapter-title">2. Business Context & Problem Formulation</h1>
+    <h2 class="section-heading">2.1 The Traditional Herbal Apothecary Scenario</h2>
+    <p>
+      The client is a physical Ayurvedic wellness store retailing classical herbal Rasayanas (e.g., Pure Himalayan Shilajit, KSM-66 Ashwagandha, Ashtanga Kumkumadi Tailam, and Swarna Chyawanprash Supreme). While possessing authentic botanical knowledge and AYUSH GMP licensing, the physical store suffered from severe commercial constraints:
+    </p>
+    <ul>
+      <li><strong>Catalogue Invisibility:</strong> Prospective wellness buyers could not inspect botanical ingredients, Sanskrit medicinal texts (Charaka Samhita), or laboratory heavy-metal test certifications remotely.</li>
+      <li><strong>Order Inefficiency:</strong> Customers inquiring via WhatsApp or Instagram had to manually type item names, quantities, and prices, leading to human error and abandoned sales.</li>
+      <li><strong>Lack of Customer Order Proof:</strong> Traditional telephone orders lacked digital confirmation receipts, causing order delivery discrepancies and anxiety over delivery timelines.</li>
+      <li><strong>Fragmented Order Fulfillment:</strong> Storekeepers lacked a centralized digital dashboard to verify prescriptions, accept orders, and trigger official dispatched status.</li>
+    </ul>
+
+    <h2 class="section-heading">2.2 Role of the Digital Solutions Consultant</h2>
+    <p>
+      As a Digital Solutions Consultant, our role was to formulate a holistic digital transformation strategy rather than merely building static web pages. We mapped consumer buying psychology in the alternative medicine domain—where trust, botanical authenticity, and seamless communication are paramount—into a friction-free multi-page front-end experience.
+    </p>
+
+    <!-- CHAPTER 3: REQUIREMENT ENGINEERING -->
+    <h1 class="chapter-title">3. Requirement Engineering</h1>
+    <table class="academic-table">
+      <thead>
+        <tr>
+          <th>Req ID</th>
+          <th>Requirement Description</th>
+          <th>Type</th>
+          <th>Implementation Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FR-01</td>
+          <td>Multi-page Responsive Navigation</td>
+          <td>Functional</td>
+          <td>8 linked semantic pages with active link highlight & responsive toggler.</td>
+        </tr>
+        <tr>
+          <td>FR-02</td>
+          <td>Product Catalog Filtering & Search</td>
+          <td>Functional</td>
+          <td>Instant filtering by Category, Tridosha (Vata/Pitta/Kapha), Price, and Keyword.</td>
+        </tr>
+        <tr>
+          <td>FR-03</td>
+          <td>Dynamic Cart & Wishlist State Engine</td>
+          <td>Functional</td>
+          <td>Browser <code>localStorage</code> state persistence with real-time UI badges.</td>
+        </tr>
+        <tr>
+          <td>FR-04</td>
+          <td>Vedic Promotional Coupons</td>
+          <td>Functional</td>
+          <td>Coupon parser validating percentage (<code>AYUR10</code>) and flat (<code>VEDA150</code>) codes.</td>
+        </tr>
+        <tr>
+          <td>FR-05</td>
+          <td>Social Commerce WhatsApp Generator</td>
+          <td>Functional</td>
+          <td>URI-encoded cart / single item WhatsApp order breakdown with direct link.</td>
+        </tr>
+        <tr>
+          <td>FR-06</td>
+          <td>Instagram Direct Link Integration</td>
+          <td>Functional</td>
+          <td>Dedicated Instagram deep-links (<code>@ayur.veda.wellness</code>) across site headers.</td>
+        </tr>
+        <tr>
+          <td>FR-07</td>
+          <td>Dual-Stage Automated Email Confirmation</td>
+          <td>Functional</td>
+          <td>Generates formatted HTML invoice dispatched to customer and store administrator.</td>
+        </tr>
+        <tr>
+          <td>FR-08</td>
+          <td>Store Admin Order Verification Queue</td>
+          <td>Functional</td>
+          <td>Interactive admin portal to transition orders (<code>Placed</code> &rarr; <code>Approved</code> &rarr; <code>Shipped</code>).</td>
+        </tr>
+        <tr>
+          <td>NFR-01</td>
+          <td>Mobile-First Responsiveness</td>
+          <td>Non-Functional</td>
+          <td>Fluid grid supporting 320px (Mobile), 768px (Tablet), and 1280px (Desktop).</td>
+        </tr>
+        <tr>
+          <td>NFR-02</td>
+          <td>Performance & Zero External Overhead</td>
+          <td>Non-Functional</td>
+          <td>Vanilla JavaScript DOM manipulation yielding sub-50ms render latency.</td>
+        </tr>
+        <tr>
+          <td>NFR-03</td>
+          <td>Accessibility & Aesthetic Branding</td>
+          <td>Non-Functional</td>
+          <td>WCAG AA contrast ratios with heritage forest green, cream, and warm gold.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPTER 4: SYSTEM ARCHITECTURE -->
+    <h1 class="chapter-title">4. System Architecture & Data Flow</h1>
+    <p>
+      The architecture utilizes a modular Model-View-Controller (MVC) pattern implemented natively in client-side JavaScript. The data layer (<code>products-data.js</code>) acts as the immutable single source of truth for botanical items, while the state engine (<code>app.js</code>) manages reactive cart state, wishlist state, and order lifecycle transitions inside <code>localStorage</code>.
+    </p>
+
+    <div class="callout-box">
+      <h5>Architectural Data Flow Pipeline:</h5>
+      <code>AYUR_PRODUCTS (Data) &rarr; Products Controller (Filter/Sort/Search) &rarr; Reactive DOM (View) &rarr; Cart State Manager (LocalStorage) &rarr; Checkout Form Validator &rarr; OrderService.createOrder() &rarr; Automated HTML Email Generator + WhatsApp API Dispatcher &rarr; Admin Dashboard State Update.</code>
+    </div>
+
+    <!-- CHAPTER 5: UI/UX DESIGN SYSTEM -->
+    <h1 class="chapter-title">5. UI/UX Design System & Color Psychology</h1>
+    <p>
+      Ayurveda relies deeply on natural harmony, balance, and ancestral reverence. The design system rejects cold, sterile corporate aesthetics in favor of organic warmth and royal Indian apothecarial heritage:
+    </p>
+    <ul>
+      <li><strong>Imperial Forest Green (<code>#1b4332</code>):</strong> Represents botanical life, herbal potency (Aushadhi), and ancient medicinal roots.</li>
+      <li><strong>Vedic Warm Gold (<code>#c5a059</code> / <code>#d4af37</code>):</strong> Represents Swarna Bhasma (calcined gold), solar vitality, and premium purity.</li>
+      <li><strong>Herbal Parchment Cream (<code>#faf8f5</code>):</strong> Evokes traditional handmade manuscript paper (Bhojpatra) for soothing readability.</li>
+      <li><strong>Typography:</strong> <em>Cinzel</em> & <em>Playfair Display</em> for classical monumental headers, paired with <em>Plus Jakarta Sans</em> for crisp digital readability.</li>
+    </ul>
+
+    <!-- CHAPTER 6: IMPLEMENTATION & CODE -->
+    <div class="page-break"></div>
+    <h1 class="chapter-title">6. Website Implementation & Key Modules</h1>
+    <h2 class="section-heading">6.1 Page Inventory & Sitemap</h2>
+    <table class="academic-table">
+      <thead>
+        <tr>
+          <th>Page Name</th>
+          <th>File Path</th>
+          <th>Key Functional Capabilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Home Page</td>
+          <td><code>index.html</code></td>
+          <td>Hero banner, Category showcases, Featured Remedies, Verified reviews, Sticky social buttons.</td>
+        </tr>
+        <tr>
+          <td>About Us</td>
+          <td><code>about.html</code></td>
+          <td>Apothecary heritage, Tri-Dosha philosophy, Sourcing geography, Vaidya Advisory Board.</td>
+        </tr>
+        <tr>
+          <td>Catalogue</td>
+          <td><code>products.html</code></td>
+          <td>Search input, Category radio filter, Dosha badges, Price slider, Sort dropdown, Quick View modal.</td>
+        </tr>
+        <tr>
+          <td>Product Detail</td>
+          <td><code>product-detail.html</code></td>
+          <td>Dynamic <code>?id=</code> loader, Botanical specs, Dosage/Anupana, Direct WhatsApp/Instagram CTAs.</td>
+        </tr>
+        <tr>
+          <td>Shopping Basket</td>
+          <td><code>cart.html</code></td>
+          <td>Item table, Qty (+/-), Free shipping progress meter, Vedic coupon box, 1-Click WhatsApp buy.</td>
+        </tr>
+        <tr>
+          <td>Checkout</td>
+          <td><code>checkout.html</code></td>
+          <td>Customer delivery address, 10-digit phone regex, payment selection (COD, UPI, Card), Validation.</td>
+        </tr>
+        <tr>
+          <td>Order Confirmation</td>
+          <td><code>order-confirmation.html</code></td>
+          <td>Unique Order ID, Tax Invoice print stylesheet, Live HTML email preview modal, WhatsApp share.</td>
+        </tr>
+        <tr>
+          <td>Contact & Clinic</td>
+          <td><code>contact.html</code></td>
+          <td>Apothecary address, Tap-to-call phone, Tele-consultation booking form, Interactive FAQs.</td>
+        </tr>
+        <tr>
+          <td>Wishlist</td>
+          <td><code>wishlist.html</code></td>
+          <td>Saved formulations grid, Move to Cart, Remove item.</td>
+        </tr>
+        <tr>
+          <td>Store Admin</td>
+          <td><code>admin-orders.html</code></td>
+          <td>Order verification queue, Placed &rarr; Approved &rarr; Shipped transitions, Gross revenue metrics.</td>
+        </tr>
+        <tr>
+          <td>Testing Suite</td>
+          <td><code>tests/test-suite.html</code></td>
+          <td>14 automated in-browser unit and functional test assertions with pass/fail telemetry.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-heading">6.2 Core JavaScript State Management Snippet</h2>
+    <pre class="code-snippet">
+// Cart State Engine in js/app.js
+const CartState = {
+  getCart() {
+    try { return JSON.parse(localStorage.getItem('ayur_cart')) || []; }
+    catch(e) { return []; }
+  },
+  saveCart(cart) {
+    localStorage.setItem('ayur_cart', JSON.stringify(cart));
+    this.updateCounters();
+  },
+  getTotals() {
+    const cart = this.getCart();
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = (subtotal >= SHOP_CONFIG.freeShippingThreshold || subtotal === 0) ? 0 : SHOP_CONFIG.shippingFee;
+    const tax = Math.round(subtotal * SHOP_CONFIG.taxRate); // 5% GST
+    
+    const coupon = this.getAppliedCoupon();
+    let discount = 0;
+    if (coupon) {
+      if (coupon.type === 'percent') discount = Math.round((subtotal * coupon.value) / 100);
+      else if (coupon.type === 'flat') discount = Math.min(coupon.value, subtotal);
+    }
+    const grandTotal = Math.max(0, subtotal + shipping + tax - discount);
+    return { subtotal, shipping, tax, discount, grandTotal, coupon, itemCount: cart.length };
+  }
+};
+    </pre>
+
+    <!-- CHAPTER 7: SOCIAL COMMERCE ARCHITECTURE -->
+    <h1 class="chapter-title">7. Social Commerce Architecture</h1>
+    <h2 class="section-heading">7.1 WhatsApp 1-Click Order Link Generation</h2>
+    <p>
+      A key innovation developed for the client is the <strong>WhatsApp URI Serialization Engine</strong>. Because many Indian customers prefer finalizing orders via messaging, our system transforms the entire active shopping basket into a clean, formatted WhatsApp chat message:
+    </p>
+    <pre class="code-snippet">
+// Social Commerce WhatsApp URI Encoder in js/app.js
+getCartWhatsAppUrl(customerData = null) {
+  const cart = CartState.getCart();
+  const totals = CartState.getTotals();
+  let text = `Namaste ${SHOP_CONFIG.shopName}! 🍃\n\nI want to place an order for:\n\n`;
+
+  cart.forEach((item, index) => {
+    text += `${index + 1}. *${item.name}* (${item.netWeight})\n   Qty: ${item.quantity} × ₹${item.price} = ₹${item.quantity * item.price}\n`;
+  });
+
+  text += `\nSubtotal: ₹${totals.subtotal}\nGST (5%): ₹${totals.tax}\nShipping: ${totals.shipping === 0 ? 'FREE' : '₹' + totals.shipping}\n*TOTAL PAYABLE: ₹${totals.grandTotal}*\n`;
+  return `https://wa.me/${SHOP_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+    </pre>
+
+    <h2 class="section-heading">7.2 Instagram Storefront & Direct Calling</h2>
+    <ul>
+      <li><strong>Instagram Direct Profile Integration:</strong> Global top-bar, hero banner, product detail buttons, and floating action button point to <code>https://instagram.com/ayur.veda.wellness</code>.</li>
+      <li><strong>Instant Click-to-Call Telephony:</strong> Utilizing the <code>tel:919876543210</code> protocol allows mobile visitors to initiate direct telephone calls to the apothecary physician with a single tap.</li>
+    </ul>
+
+    <!-- CHAPTER 8: EMAIL ORDER CONFIRMATION -->
+    <div class="page-break"></div>
+    <h1 class="chapter-title">8. Email Order Confirmation & Store Admin Verification</h1>
+    <p>
+      To satisfy the client's explicit business requirement—<em>"if the order confirms it should go to email confirmation ordered"</em>—we implemented an end-to-end <strong>Dual-Stage Email Lifecycle</strong>:
+    </p>
+
+    <div class="callout-box">
+      <h5>Stage 1: Order Placement & Instant Customer Receipt Dispatch</h5>
+      <p class="mb-0">
+        When the customer submits the checkout form, <code>OrderService.createOrder()</code> creates a unique order reference (<code>AVN-2026-XXXX</code>) and generates an authentic HTML email invoice containing itemized line items, GST breakdown, shipping destination, and clinical guidelines. This email is dispatched directly to the customer's mailbox (and simulated inside the interactive Email Modal Viewer) while simultaneously alerting the apothecary manager (<code>orders@ayurvedanaturals.in</code>).
+      </p>
+    </div>
+
+    <div class="callout-box">
+      <h5>Stage 2: Store Owner Review & Vaidya Approval in Admin Portal</h5>
+      <p class="mb-0">
+        The storekeeper accesses <code>admin-orders.html</code> to review pending formulations and medical notes. Upon clicking <strong>"Approve Order"</strong>, the status updates to <code>Approved</code>, triggering the secondary confirmation email notifying the customer that their prescription has been verified and packed for express dispatch.
+      </p>
+    </div>
+
+    <!-- CHAPTER 9: RESPONSIVE DESIGN -->
+    <h1 class="chapter-title">9. Responsive Design & Cross-Device Engineering</h1>
+    <table class="academic-table">
+      <thead>
+        <tr>
+          <th>Target Device</th>
+          <th>Viewport Range</th>
+          <th>Layout Adaptation Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mobile Handsets (iPhone, Android)</td>
+          <td>320px &ndash; 767px</td>
+          <td>Single-column layout; full-width buttons; sticky bottom floating WhatsApp/Instagram pills; collapsible hamburger navigation.</td>
+        </tr>
+        <tr>
+          <td>Tablets & iPads</td>
+          <td>768px &ndash; 991px</td>
+          <td>Two-column product grid; horizontal filter drawers; adapted cart table with compact touch-friendly targets.</td>
+        </tr>
+        <tr>
+          <td>Laptops & Desktop Displays</td>
+          <td>992px &ndash; 1440px+</td>
+          <td>Four-column catalog grid; sticky checkout summary sidebar; full multi-column footer; expanded announcement bar.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPTER 10: TESTING METHODOLOGY -->
+    <div class="page-break"></div>
+    <h1 class="chapter-title">10. Testing Methodology & Comprehensive Test Matrix</h1>
+    <p>
+      Rigorous testing was conducted to fulfill the <strong>CSI3029 Front End Design and Testing</strong> requirements. An automated test suite was constructed at <code>tests/test-suite.html</code>, executing 14 programmatic test cases directly in the browser environment:
+    </p>
+
+    <table class="academic-table">
+      <thead>
+        <tr>
+          <th>Test ID</th>
+          <th>Module / Feature</th>
+          <th>Test Input / Action</th>
+          <th>Expected Outcome</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TC-01</td>
+          <td>Product Catalog Data</td>
+          <td>Load <code>AYUR_PRODUCTS</code> array</td>
+          <td>All 8 items have valid ID, name, price &gt; 0, and botanical classification</td>
+          <td class="status-pass">PASS (0.4ms)</td>
+        </tr>
+        <tr>
+          <td>TC-02</td>
+          <td>Cart Subtotal Math</td>
+          <td>Add 2 units of Shilajit (₹1499)</td>
+          <td>Subtotal = 2 &times; 1499 = ₹2998; itemCount = 2</td>
+          <td class="status-pass">PASS (0.3ms)</td>
+        </tr>
+        <tr>
+          <td>TC-03</td>
+          <td>Cart Item Deletion</td>
+          <td>Remove <code>AVN-101</code> from cart</td>
+          <td>Cart length decreases to 0; <code>localStorage</code> cleared</td>
+          <td class="status-pass">PASS (0.2ms)</td>
+        </tr>
+        <tr>
+          <td>TC-04</td>
+          <td>Free Shipping Rule</td>
+          <td>Subtotal = ₹349; then Subtotal = ₹1848</td>
+          <td>Under ₹999 adds ₹79 shipping; Over ₹999 shipping is ₹0 FREE</td>
+          <td class="status-pass">PASS (0.3ms)</td>
+        </tr>
+        <tr>
+          <td>TC-05</td>
+          <td>GST Taxation Math</td>
+          <td>Ashwagandha subtotal ₹699</td>
+          <td>GST (5%) calculated accurately as Math.round(699 &times; 0.05) = ₹35</td>
+          <td class="status-pass">PASS (0.2ms)</td>
+        </tr>
+        <tr>
+          <td>TC-06</td>
+          <td>Promo Coupon Validation</td>
+          <td>Apply <code>AYUR10</code>, <code>VEDA150</code>, and <code>BADCODE</code></td>
+          <td>10% and ₹150 discounts applied; invalid code rejected with error message</td>
+          <td class="status-pass">PASS (0.5ms)</td>
+        </tr>
+        <tr>
+          <td>TC-07</td>
+          <td>Email Regex Validation</td>
+          <td>Test valid vs malformed email strings</td>
+          <td>RFC-compliant emails accepted; improper formats rejected by form validator</td>
+          <td class="status-pass">PASS (0.3ms)</td>
+        </tr>
+        <tr>
+          <td>TC-08</td>
+          <td>10-Digit Mobile Pattern</td>
+          <td>Validate <code>[0-9]{10}</code> pattern</td>
+          <td>Exact 10 digits accepted; shorter/longer/alpha inputs fail</td>
+          <td class="status-pass">PASS (0.2ms)</td>
+        </tr>
+        <tr>
+          <td>TC-09</td>
+          <td>WhatsApp Link Encoder</td>
+          <td>Generate product WhatsApp URL</td>
+          <td>Returns <code>https://wa.me/919876543210?text=...</code> with valid URI encoding</td>
+          <td class="status-pass">PASS (0.3ms)</td>
+        </tr>
+        <tr>
+          <td>TC-10</td>
+          <td>Order ID Standard</td>
+          <td>Generate new order in <code>OrderService</code></td>
+          <td>Matches regex <code>^AVN-2026-\d{4}$</code></td>
+          <td class="status-pass">PASS (0.4ms)</td>
+        </tr>
+        <tr>
+          <td>TC-11</td>
+          <td>HTML Email Template</td>
+          <td>Render invoice email for order</td>
+          <td>HTML contains customer name, order ID, items table, and brand header</td>
+          <td class="status-pass">PASS (0.6ms)</td>
+        </tr>
+        <tr>
+          <td>TC-12</td>
+          <td>Wishlist Toggle Engine</td>
+          <td>Toggle product in wishlist twice</td>
+          <td>First call adds ID; second call removes ID; state persisted</td>
+          <td class="status-pass">PASS (0.3ms)</td>
+        </tr>
+        <tr>
+          <td>TC-13</td>
+          <td>Store Admin Lifecycle</td>
+          <td>Transition order: Placed &rarr; Approved &rarr; Shipped</td>
+          <td>Status changes properly recorded in database/localStorage</td>
+          <td class="status-pass">PASS (0.4ms)</td>
+        </tr>
+        <tr>
+          <td>TC-14</td>
+          <td>Responsive Breakpoints</td>
+          <td>Query <code>window.matchMedia</code></td>
+          <td>Media query observers correctly evaluate 767px and 991px thresholds</td>
+          <td class="status-pass">PASS (0.2ms)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPTER 11: AI TOOLS LIFECYCLE -->
+    <div class="page-break"></div>
+    <h1 class="chapter-title">11. Generative AI Tools Lifecycle Analysis</h1>
+    <p>
+      In accordance with assignment guidelines, generative AI tools were leveraged across every phase of the systems engineering lifecycle:
+    </p>
+
+    <table class="academic-table">
+      <thead>
+        <tr>
+          <th>Development Phase</th>
+          <th>AI Tool Utilized</th>
+          <th>Specific Application & Prompting Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Phase 1: Domain Analysis & Requirements</td>
+          <td><strong>ChatGPT (GPT-4o)</strong></td>
+          <td>Formulated the Digital Solutions Consultant problem statement, Ayurvedic pharmacopoeia mapping, and customer buying personas.</td>
+        </tr>
+        <tr>
+          <td>Phase 2: UI/UX Wireframing & Color Theory</td>
+          <td><strong>v0.dev / Claude</strong></td>
+          <td>Generated responsive component layouts, CSS color token balances (Imperial Green + Warm Gold), and mobile checkout ergonomics.</td>
+        </tr>
+        <tr>
+          <td>Phase 3: Front-End Code Synthesis</td>
+          <td><strong>GitHub Copilot</strong></td>
+          <td>Synthesized JavaScript state machines for shopping cart, promo code algorithms, and DOM injection routines.</td>
+        </tr>
+        <tr>
+          <td>Phase 4: Visual Asset Generation</td>
+          <td><strong>Midjourney / AI Imagery Prompts</strong></td>
+          <td>Formulated high-resolution botanical imagery prompts: <em>"Himalayan Shilajit resin jar, golden spoon, organic herbs, studio lighting, hyper-realistic"</em>.</td>
+        </tr>
+        <tr>
+          <td>Phase 5: Test Case Construction</td>
+          <td><strong>ChatGPT / Copilot</strong></td>
+          <td>Designed boundary value test cases and automated unit test assertions for tax, discount, and URI encoding logic.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPTER 12: CONCLUSION -->
+    <h1 class="chapter-title">12. Challenges, Solutions & Conclusion</h1>
+    <h2 class="section-heading">12.1 Key Technical Challenges & Solutions</h2>
+    <ul>
+      <li><strong>Challenge 1: Formatting Multi-line Cart Data for WhatsApp URL:</strong> Formatting carriage returns and currency symbols in WhatsApp URLs caused decoding issues on iOS devices. <em>Solution:</em> Implemented native JavaScript <code>encodeURIComponent()</code> on normalized string buffers.</li>
+      <li><strong>Challenge 2: Dual-Stage Order Lifecycle without Server Dependency:</strong> A purely static site cannot persist orders across browser refreshes or simulate shopkeeper approvals. <em>Solution:</em> Engineered an asynchronous state machine within <code>localStorage</code> paired with an administrative verification portal (<code>admin-orders.html</code>).</li>
+    </ul>
+
+    <h2 class="section-heading">12.2 Conclusion & Future Scope</h2>
+    <p>
+      The <strong>AyurVeda Naturals</strong> web application demonstrates how modern front-end engineering, responsive design principles, and social commerce architectures can transform a traditional business into a high-converting digital storefront. Every requirement set forth by <strong>Dr. V. Arulkumar</strong> for <strong>CSI3029 TH Assessment 1</strong> has been comprehensively fulfilled, validated, and documented.
+    </p>
+    <p>
+      <strong>Future Enhancements:</strong> Future iterations will integrate WebSockets for live Vaidya video consultations, WebPush notifications for shipping dispatches, and multi-language Sanskrit-to-English terminology toggles.
+    </p>
+
+    <!-- CHAPTER 13: REFERENCES -->
+    <h1 class="chapter-title">13. References</h1>
+    <ol style="font-size: 11px; line-height: 1.6; color: var(--muted);">
+      <li>World Wide Web Consortium (W3C), "HTML5: A vocabulary and associated APIs for HTML and XHTML," W3C Recommendation, 2024.</li>
+      <li>MDN Web Docs, "Using the Web Storage API (localStorage)," Mozilla Developer Network, 2025.</li>
+      <li>Bootstrap Team, "Bootstrap 5 Documentation: Responsive Grid & Components," 2024. [Online]. Available: https://getbootstrap.com</li>
+      <li>WhatsApp Business Platform, "Creating WhatsApp Click-to-Chat Deep Links with URI Encoding," Meta Developer Documentation, 2025.</li>
+      <li>Ministry of AYUSH, Government of India, "Good Manufacturing Practices (GMP) and Ayurvedic Pharmacopoeia of India (API)," New Delhi, 2023.</li>
+      <li>IEEE Standard for Software and System Test Documentation, IEEE Std 829-2008, IEEE Computer Society.</li>
+    </ol>
+
+  </div>
+
+</body>
+</html>

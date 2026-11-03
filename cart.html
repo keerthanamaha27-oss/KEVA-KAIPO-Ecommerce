@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | KEVA KAIPO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar">
+    <div class="container top-bar-content">
+      <div>
+        <span>🌿 KEVA KAIPO Products • Free Shipping on orders over ₹999</span>
+      </div>
+      <div class="social-top-links">
+        <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener">
+          <i class="bi bi-instagram"></i> @ayur.veda.wellness
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <div class="brand-icon">🍃</div>
+          <div>
+            <span>KEVA KAIPO</span>
+            <small class="d-block" style="font-size:10px;font-family:var(--font-sans);color:var(--gold-dark);letter-spacing:1px;font-weight:normal;">
+              SRI MAHALAKSHMI & CO.
+            </small>
+          </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin-orders.html">Store Admin</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="wishlist.html" class="header-action-btn" title="My Wishlist">
+              <i class="bi bi-heart"></i>
+              <span class="badge-count wishlist-count-badge" style="display:none;">0</span>
+            </a>
+            <a href="cart.html" class="header-action-btn active" title="Shopping Cart">
+              <i class="bi bi-bag"></i>
+              <span class="badge-count cart-count-badge" style="display:none;">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="py-4 bg-light border-bottom">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-1 small">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="products.html">Our Products</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Your Shopping Cart</li>
+        </ol>
+      </nav>
+      <h1 class="h2 mb-0" style="font-family:var(--font-serif);color:var(--primary-deep);">
+        Your Shopping Cart
+      </h1>
+    </div>
+  </section>
+
+  <!-- Cart Content -->
+  <section class="py-5">
+    <div class="container">
+
+      <!-- Free Shipping Tracker -->
+      <div class="alert alert-success border-0 shadow-sm mb-4" id="shipping-tracker-box">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="small fw-bold" id="shipping-tracker-text">Calculating free shipping threshold...</span>
+          <span class="badge bg-success">₹999 Free Shipping</span>
+        </div>
+        <div class="progress" style="height:6px;">
+          <div class="progress-bar bg-success" id="shipping-progress-bar" role="progressbar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="row g-4" id="cart-content-row">
+
+        <!-- Cart Items -->
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+            <div class="table-responsive">
+              <table class="table cart-table mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th style="width:120px;">Price</th>
+                    <th style="width:140px;">Quantity</th>
+                    <th style="width:120px;">Total</th>
+                    <th style="width:60px;"></th>
+                  </tr>
+                </thead>
+                <tbody id="cart-items-body">
+                  <!-- Dynamically rendered -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-3 bg-light d-flex justify-content-between align-items-center">
+              <a href="products.html" class="btn btn-outline-dark btn-sm">
+                <i class="bi bi-arrow-left"></i> Continue Shopping
+              </a>
+              <button class="btn btn-outline-danger btn-sm" onclick="clearCartConfirm()">
+                <i class="bi bi-trash"></i> Empty Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Promo Code -->
+          <div class="card border-0 shadow-sm rounded-3 p-4 mt-4">
+            <h6 class="fw-bold mb-3" style="color:var(--primary-deep);">
+              <i class="bi bi-tag-fill text-warning me-1"></i> Apply Promotional Code
+            </h6>
+
+            <div class="row g-2 align-items-center">
+              <div class="col-sm-8">
+                <input type="text" id="coupon-input" class="form-control text-uppercase"
+                  placeholder="Enter coupon (e.g. AYUR10, VEDA150)">
+              </div>
+              <div class="col-sm-4">
+                <button class="btn btn-vedic-dark w-100" id="btn-apply-coupon">Apply Coupon</button>
+              </div>
+            </div>
+
+            <div class="mt-2 small text-muted">
+              <span>Try: </span>
+              <button class="btn btn-link btn-sm p-0 me-2 text-success" onclick="quickApplyCoupon('AYUR10')">AYUR10 (10% Off)</button>
+              <button class="btn btn-link btn-sm p-0 me-2 text-success" onclick="quickApplyCoupon('VEDA150')">VEDA150 (₹150 Flat)</button>
+              <button class="btn btn-link btn-sm p-0 text-success" onclick="quickApplyCoupon('FIRSTHERB')">FIRSTHERB (15% Off)</button>
+            </div>
+
+            <div id="applied-coupon-badge" class="mt-2" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-4">
+          <div class="order-summary-card">
+            <h5 class="fw-bold mb-3" style="font-family:var(--font-serif);color:var(--primary-deep);">
+              Order Summary
+            </h5>
+
+            <div class="summary-row">
+              <span class="text-muted">Subtotal:</span>
+              <span class="fw-bold" id="summary-subtotal">₹0</span>
+            </div>
+
+            <div class="summary-row" id="summary-discount-row" style="display:none;">
+              <span class="text-success">Coupon Discount:</span>
+              <span class="fw-bold text-success" id="summary-discount">-₹0</span>
+            </div>
+
+            <div class="summary-row">
+              <span class="text-muted">GST (5%):</span>
+              <span id="summary-tax">₹0</span>
+            </div>
+
+            <div class="summary-row">
+              <span class="text-muted">Delivery:</span>
+              <span id="summary-shipping">₹0</span>
+            </div>
+
+            <div class="summary-total">
+              <span>Grand Total:</span>
+              <span id="summary-grand-total">₹0</span>
+            </div>
+
+            <a href="checkout.html"
+              class="btn btn-vedic-primary w-100 py-2 mt-4 text-center justify-content-center"
+              id="btn-proceed-checkout">
+              <i class="bi bi-shield-check me-1"></i> Proceed to Checkout
+            </a>
+
+            <div class="mt-3 pt-3 border-top">
+              <a href="https://instagram.com/ayur.veda.wellness"
+                target="_blank" rel="noopener"
+                class="btn-instagram-direct w-100 py-2 text-center justify-content-center">
+                <i class="bi bi-instagram"></i> Visit Instagram
+              </a>
+            </div>
+
+            <div class="mt-3 p-2 bg-light rounded text-center small text-muted">
+              <i class="bi bi-lock-fill text-success"></i>
+              Secure Checkout
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Cart -->
+      <div id="empty-cart-state" class="text-center py-5 bg-white rounded-3 shadow-sm border" style="display:none;">
+        <div style="font-size:54px;">🛍️</div>
+        <h3 class="mt-3 fw-bold" style="font-family:var(--font-serif);color:var(--primary-deep);">
+          Your Shopping Cart is Empty
+        </h3>
+        <p class="text-muted max-w-md mx-auto">
+          Explore our range of KEVA KAIPO products.
+        </p>
+        <a href="products.html" class="btn btn-vedic-primary mt-2">
+          <i class="bi bi-bag"></i> Browse Products
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Instagram -->
+  <div class="floating-commerce-bar">
+    <a href="https://instagram.com/ayur.veda.wellness"
+      target="_blank" rel="noopener"
+      class="floating-commerce-btn floating-instagram"
+      title="Instagram">
+      <i class="bi bi-instagram"></i>
+      <span class="tooltip-label">Instagram: @ayur.veda.wellness</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container text-center">
+      <p>© 2026 KEVA KAIPO | SRI MAHALAKSHMI & CO. All Rights Reserved.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener" class="text-white-50">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a href="tel:+918072026733" class="text-white-50">
+          <i class="bi bi-telephone"></i> Call: +91 80720 26733
+        </a>
+        <a href="mailto:keerthanamaha27@gmail.com" class="text-white-50">
+          <i class="bi bi-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+
+      document.getElementById('btn-apply-coupon').addEventListener('click', () => {
+        const input = document.getElementById('coupon-input');
+        CartState.applyCoupon(input.value);
+        renderCart();
+      });
+    });
+
+    function quickApplyCoupon(code) {
+      document.getElementById('coupon-input').value = code;
+      CartState.applyCoupon(code);
+      renderCart();
+    }
+
+    function removeCoupon() {
+      CartState.removeCoupon();
+      renderCart();
+    }
+
+    function clearCartConfirm() {
+      if (confirm("Are you sure you want to empty your entire cart?")) {
+        CartState.clearCart();
+        renderCart();
+      }
+    }
+
+    function renderCart() {
+      const cart = CartState.getCart();
+      const totals = CartState.getTotals();
+
+      const cartContentRow = document.getElementById('cart-content-row');
+      const emptyCartState = document.getElementById('empty-cart-state');
+      const shippingTrackerBox = document.getElementById('shipping-tracker-box');
+
+      if (cart.length === 0) {
+        cartContentRow.style.display = 'none';
+        shippingTrackerBox.style.display = 'none';
+        emptyCartState.style.display = 'block';
+        return;
+      }
+
+      cartContentRow.style.display = 'flex';
+      shippingTrackerBox.style.display = 'block';
+      emptyCartState.style.display = 'none';
+
+      const threshold = SHOP_CONFIG.freeShippingThreshold;
+      const progressPercent = Math.min(100, (totals.subtotal / threshold) * 100);
+
+      document.getElementById('shipping-progress-bar').style.width = `${progressPercent}%`;
+
+      if (totals.subtotal >= threshold) {
+        document.getElementById('shipping-tracker-text').innerHTML =
+          `🎉 Congratulations! You unlocked <strong>FREE Delivery</strong>!`;
+      } else {
+        const remaining = threshold - totals.subtotal;
+        document.getElementById('shipping-tracker-text').innerHTML =
+          `Add ₹${remaining} more to get <strong>FREE Shipping</strong>!`;
+      }
+
+      const tbody = document.getElementById('cart-items-body');
+
+      tbody.innerHTML = cart.map(item => `
+        <tr>
+          <td>
+            <div class="d-flex align-items-center gap-3">
+              <img src="${item.image}" alt="${item.name}" class="rounded"
+                style="width:55px;height:55px;object-fit:cover;">
+              <div>
+                <a href="product-detail.html?id=${item.id}"
+                  class="fw-bold text-dark d-block text-decoration-none">${item.name}</a>
+                <small class="text-muted">${item.category} • ${item.netWeight || ''}</small>
+              </div>
+            </div>
+          </td>
+          <td>₹${item.price}</td>
+          <td>
+            <div class="input-group input-group-sm" style="width:100px;">
+              <button class="btn btn-outline-secondary" type="button"
+                onclick="updateQty('${item.id}', ${item.quantity - 1})">-</button>
+              <input type="text" class="form-control text-center" value="${item.quantity}" readonly>
+              <button class="btn btn-outline-secondary" type="button"
+                onclick="updateQty('${item.id}', ${item.quantity + 1})">+</button>
+            </div>
+          </td>
+          <td class="fw-bold">₹${item.price * item.quantity}</td>
+          <td>
+            <button class="btn btn-link text-danger p-0"
+              onclick="removeItem('${item.id}')" title="Remove Item">
+              <i class="bi bi-x-circle fs-5"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('summary-subtotal').textContent = `₹${totals.subtotal}`;
+      document.getElementById('summary-tax').textContent = `₹${totals.tax}`;
+      document.getElementById('summary-shipping').innerHTML =
+        totals.shipping === 0
+          ? '<span class="text-success fw-bold">FREE</span>'
+          : `₹${totals.shipping}`;
+      document.getElementById('summary-grand-total').textContent = `₹${totals.grandTotal}`;
+
+      const couponRow = document.getElementById('summary-discount-row');
+      const couponBadge = document.getElementById('applied-coupon-badge');
+
+      if (totals.discount > 0 && totals.coupon) {
+        couponRow.style.display = 'flex';
+        document.getElementById('summary-discount').textContent = `-₹${totals.discount}`;
+
+        couponBadge.style.display = 'block';
+        couponBadge.innerHTML = `
+          <div class="alert alert-success py-2 px-3 small d-flex justify-content-between align-items-center mb-0">
+            <span>✓ Coupon <strong>${totals.coupon.code}</strong> applied (${totals.coupon.label})</span>
+            <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none"
+              onclick="removeCoupon()">Remove</button>
+          </div>
+        `;
+      } else {
+        couponRow.style.display = 'none';
+        couponBadge.style.display = 'none';
+      }
+    }
+
+    function updateQty(id, newQty) {
+      CartState.updateQuantity(id, newQty);
+      renderCart();
+    }
+
+    function removeItem(id) {
+      CartState.removeItem(id);
+      renderCart();
+    }
+  </script>
+</body>
+</html>

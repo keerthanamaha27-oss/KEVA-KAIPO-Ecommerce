@@ -1,0 +1,19 @@
+{
+  "name": "ayurveda-naturals-ecommerce",
+  "version": "1.0.0",
+  "description": "Authentic Ayurvedic E-Commerce Platform with Social Commerce & Email Confirmation Workflow - CSI3029 Front End Design & Testing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js 8080",
+    "start:5000": "node server.js 5000",
+    "start:8080": "node server.js 8080",
+    "start:5500": "node server.js 5500",
+    "start:3000": "node server.js 3000"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  },
+  "author": "Digital Solutions Consultant",
+  "license": "ISC"
+}

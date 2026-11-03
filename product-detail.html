@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | KEVA KAIPO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar">
+    <div class="container top-bar-content">
+      <div>
+        <span>🌿 KEVA KAIPO Products • Free Shipping on orders over ₹999</span>
+      </div>
+      <div class="social-top-links">
+        <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener">
+          <i class="bi bi-instagram"></i> @ayur.veda.wellness
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <div class="brand-icon">🍃</div>
+          <div>
+            <span>KEVA KAIPO</span>
+            <small class="d-block" style="font-size:10px; font-family:var(--font-sans); color:var(--gold-dark); letter-spacing:1px; font-weight:normal;">
+              SRI MAHALAKSHMI &amp; CO.
+            </small>
+          </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link active" href="products.html">Our Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin-orders.html">Store Admin</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="wishlist.html" class="header-action-btn" title="My Wishlist">
+              <i class="bi bi-heart"></i>
+              <span class="badge-count wishlist-count-badge" style="display:none;">0</span>
+            </a>
+            <a href="cart.html" class="header-action-btn" title="Shopping Cart">
+              <i class="bi bi-bag"></i>
+              <span class="badge-count cart-count-badge" style="display:none;">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <section class="py-3 bg-light border-bottom">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 small">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="products.html">Our Products</a></li>
+          <li class="breadcrumb-item active" id="breadcrumb-current-product" aria-current="page">Product Details</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Product Detail Section -->
+  <section class="py-5" id="product-detail-section">
+    <div class="container">
+      <div class="row g-5">
+
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm p-3 rounded-4 bg-white">
+            <div style="height:440px; overflow:hidden; border-radius:12px; background:#f8fafc;" class="position-relative">
+              <img id="detail-image" src="" alt="" style="width:100%; height:100%; object-fit:contain;">
+              <span id="detail-badge" class="product-badge" style="font-size:13px; padding:6px 14px;"></span>
+            </div>
+            <div class="d-flex justify-content-between p-3 mt-3 bg-light rounded-3 text-center small text-muted">
+              <div><i class="bi bi-shield-check text-success fs-5 d-block"></i> Product Details</div>
+              <div><i class="bi bi-box-seam text-success fs-5 d-block"></i> Product Packaging</div>
+              <div><i class="bi bi-truck text-success fs-5 d-block"></i> Delivery Support</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <span id="detail-category" class="product-category-tag" style="font-size:13px;"></span>
+          <h1 id="detail-name" class="h2 fw-bold mt-1 mb-2" style="font-family:var(--font-serif); color:var(--primary-deep);"></h1>
+          <p id="detail-sanskrit" class="text-muted fst-italic mb-3"></p>
+
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="stars" id="detail-stars">★★★★★</div>
+            <span id="detail-rating-text" class="small text-muted"></span>
+          </div>
+
+          <div class="d-flex align-items-baseline gap-3 mb-3 p-3 rounded-3" style="background:var(--bg-cream);">
+            <span id="detail-price" class="h3 fw-bold text-success mb-0"></span>
+            <span id="detail-original-price" class="text-muted text-decoration-line-through"></span>
+            <span id="detail-discount" class="badge bg-success"></span>
+            <span class="small text-muted ms-auto">Price as displayed</span>
+          </div>
+
+          <p id="detail-short-desc" class="text-secondary mb-4"></p>
+
+          <div class="card p-3 mb-4 border-0 shadow-sm" style="background:#fdfaf3; border-left:4px solid var(--gold-accent) !important;">
+            <div class="row g-2 small">
+              <div class="col-6"><strong>Product Category:</strong> <span id="detail-dosha"></span></div>
+              <div class="col-6"><strong>Net Quantity:</strong> <span id="detail-net-weight"></span></div>
+              <div class="col-6"><strong>Stock Availability:</strong> <span id="detail-stock-status" class="fw-bold"></span></div>
+              <div class="col-6"><strong>Delivery:</strong> See checkout details</div>
+            </div>
+          </div>
+
+          <!-- Quantity and Purchase Buttons -->
+          <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
+            <div class="input-group" style="width:130px;">
+              <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(-1)">-</button>
+              <input type="number" id="detail-qty" class="form-control text-center" value="1" min="1" max="10" readonly>
+              <button class="btn btn-outline-secondary" type="button" onclick="changeQuantity(1)">+</button>
+            </div>
+
+            <button class="btn btn-vedic-dark flex-grow-1 py-2" id="btn-add-to-cart">
+              <i class="bi bi-cart-plus me-1"></i> Add to Cart
+            </button>
+
+            <button class="btn btn-vedic-primary py-2 px-4" id="btn-buy-now">
+              Buy Now
+            </button>
+
+            <button class="btn btn-outline-danger" id="btn-wishlist-toggle" title="Save to Wishlist">
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+
+          <!-- Instagram Enquiry -->
+          <div class="p-3 rounded-3 border mb-4" style="background:#f8fafc;">
+            <h6 class="fw-bold mb-2 small text-uppercase" style="color:var(--primary-deep); letter-spacing:0.5px;">
+              <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Product Enquiries
+            </h6>
+            <a id="btn-direct-instagram" href="https://instagram.com/ayur.veda.wellness"
+               target="_blank" rel="noopener"
+               class="btn-instagram-direct d-flex text-center justify-content-center">
+              <i class="bi bi-instagram"></i> Enquire on Instagram
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Product Information Tabs -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <ul class="nav nav-tabs nav-fill" id="productTabs" role="tablist">
+            <li class="nav-item">
+              <button class="nav-link active fw-bold" id="desc-tab" data-bs-toggle="tab" data-bs-target="#tab-desc" type="button">
+                Product Description
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link fw-bold" id="ingredients-tab" data-bs-toggle="tab" data-bs-target="#tab-ingredients" type="button">
+                Ingredients
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link fw-bold" id="dosage-tab" data-bs-toggle="tab" data-bs-target="#tab-dosage" type="button">
+                Usage Information
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link fw-bold" id="safety-tab" data-bs-toggle="tab" data-bs-target="#tab-safety" type="button">
+                Product Information
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content bg-white p-4 rounded-bottom border border-top-0 shadow-sm" id="productTabsContent">
+
+            <div class="tab-pane fade show active" id="tab-desc">
+              <h5 class="fw-bold text-success mb-3">Product Description</h5>
+              <p id="tab-full-desc" class="lead-sm text-secondary"></p>
+              <h6 class="fw-bold mt-4 mb-2">Product Highlights:</h6>
+              <ul id="tab-benefits-list" class="list-group list-group-flush mb-3"></ul>
+            </div>
+
+            <div class="tab-pane fade" id="tab-ingredients">
+              <h5 class="fw-bold text-success mb-3">Ingredients</h5>
+              <p class="text-muted small">Please refer to the product packaging for the complete ingredient information.</p>
+              <ul id="tab-ingredients-list" class="list-group mb-3"></ul>
+            </div>
+
+            <div class="tab-pane fade" id="tab-dosage">
+              <h5 class="fw-bold text-success mb-3">Usage Information</h5>
+              <div class="alert alert-success d-flex align-items-center gap-3">
+                <i class="bi bi-info-circle-fill fs-4"></i>
+                <div id="tab-dosage-text"></div>
+              </div>
+              <p class="small text-muted">
+                Follow the directions printed on the product label. Consult a qualified healthcare professional when appropriate.
+              </p>
+            </div>
+
+            <div class="tab-pane fade" id="tab-safety">
+              <h5 class="fw-bold text-success mb-3">Product Information</h5>
+              <p class="text-muted small">Refer to the product packaging and official product information for applicable certifications and safety details.</p>
+              <div class="row g-3" id="tab-certifications-row"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Instagram Button -->
+  <div class="floating-commerce-bar">
+    <a href="https://instagram.com/ayur.veda.wellness"
+       target="_blank" rel="noopener"
+       class="floating-commerce-btn floating-instagram"
+       title="Instagram Shop">
+      <i class="bi bi-instagram"></i>
+      <span class="tooltip-label">Instagram Store</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container text-center">
+      <p>© 2026 KEVA KAIPO | SRI MAHALAKSHMI &amp; CO. All Rights Reserved.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener" class="text-white-50">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a href="tel:+918072026733" class="text-white-50">
+          <i class="bi bi-telephone"></i> Call: +91 80720 26733
+        </a>
+        <a href="mailto:keerthanamaha27@gmail.com" class="text-white-50">
+          <i class="bi bi-envelope"></i> Email Us
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    let currentProduct = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id') || 'AVN-101';
+
+      currentProduct = AYUR_PRODUCTS.find(p => p.id === productId) || AYUR_PRODUCTS[0];
+
+      if (currentProduct) {
+        populateProductDetails(currentProduct);
+      }
+    });
+
+    function populateProductDetails(p) {
+      document.title = `${p.name} | KEVA KAIPO`;
+
+      document.getElementById('breadcrumb-current-product').textContent = p.name;
+      document.getElementById('detail-image').src = p.image;
+      document.getElementById('detail-image').alt = p.name;
+      document.getElementById('detail-badge').textContent = p.badge || '';
+      document.getElementById('detail-category').textContent = p.category || '';
+      document.getElementById('detail-name').textContent = p.name;
+      document.getElementById('detail-sanskrit').textContent = p.sanskritName || '';
+      document.getElementById('detail-stars').textContent = `★ ${p.rating || 0}`;
+      document.getElementById('detail-rating-text').textContent =
+        `${p.rating || 0} / 5.0 (${p.reviewsCount || 0} reviews)`;
+
+      document.getElementById('detail-price').textContent = `₹${p.price}`;
+      document.getElementById('detail-original-price').textContent =
+        p.originalPrice > p.price ? `₹${p.originalPrice}` : '';
+      document.getElementById('detail-discount').textContent = p.discount || '';
+      document.getElementById('detail-short-desc').textContent = p.shortDesc || '';
+
+      document.getElementById('detail-dosha').textContent = p.category || '—';
+      document.getElementById('detail-net-weight').textContent = p.netWeight || '—';
+
+      const stockStatus = document.getElementById('detail-stock-status');
+      const inStock = p.inStock !== false;
+
+      stockStatus.textContent = inStock ? 'In Stock' : 'Out of Stock';
+      stockStatus.className = inStock ? 'text-success fw-bold' : 'text-danger fw-bold';
+
+      document.getElementById('btn-add-to-cart').disabled = !inStock;
+      document.getElementById('btn-buy-now').disabled = !inStock;
+
+      document.getElementById('tab-full-desc').textContent = p.description || '';
+
+      const benefitsContainer = document.getElementById('tab-benefits-list');
+      benefitsContainer.innerHTML = (p.benefits || []).map(b => `
+        <li class="list-group-item px-0 border-0 d-flex align-items-center gap-2">
+          <i class="bi bi-check2-circle text-success fs-5"></i>
+          <span>${b}</span>
+        </li>
+      `).join('');
+
+      const ingContainer = document.getElementById('tab-ingredients-list');
+      ingContainer.innerHTML = (p.ingredients || []).map(ing => `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>🌿 ${ing}</span>
+        </li>
+      `).join('');
+
+      document.getElementById('tab-dosage-text').textContent =
+        p.dosage || 'Please refer to the product label for usage instructions.';
+
+      const certContainer = document.getElementById('tab-certifications-row');
+      certContainer.innerHTML = (p.certifications || []).map(cert => `
+        <div class="col-md-6">
+          <div class="p-3 border rounded-3 bg-light d-flex align-items-center gap-3">
+            <i class="bi bi-info-circle text-success fs-3"></i>
+            <div><h6 class="mb-0 fw-bold">${cert}</h6></div>
+          </div>
+        </div>
+      `).join('');
+
+      const instagramButton = document.getElementById('btn-direct-instagram');
+      if (instagramButton && typeof SocialCommerce !== 'undefined' &&
+          typeof SocialCommerce.getInstagramUrl === 'function') {
+        instagramButton.href = SocialCommerce.getInstagramUrl(p.name);
+      }
+
+      updateWishlistButton(p.id);
+
+      document.getElementById('btn-add-to-cart').onclick = () => {
+        if (p.inStock === false) return;
+        const qty = parseInt(document.getElementById('detail-qty').value, 10) || 1;
+        CartState.addItem(p.id, qty);
+      };
+
+      document.getElementById('btn-buy-now').onclick = () => {
+        if (p.inStock === false) return;
+        const qty = parseInt(document.getElementById('detail-qty').value, 10) || 1;
+        CartState.addItem(p.id, qty);
+        window.location.href = 'checkout.html';
+      };
+
+      document.getElementById('btn-wishlist-toggle').onclick = () => {
+        WishlistState.toggle(p.id);
+        updateWishlistButton(p.id);
+      };
+    }
+
+    function changeQuantity(delta) {
+      const qtyInput = document.getElementById('detail-qty');
+      let val = parseInt(qtyInput.value, 10) + delta;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      qtyInput.value = val;
+    }
+
+    function updateWishlistButton(productId) {
+      const btn = document.getElementById('btn-wishlist-toggle');
+
+      if (WishlistState.isInWishlist(productId)) {
+        btn.classList.add('btn-danger');
+        btn.classList.remove('btn-outline-danger');
+        btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+      } else {
+        btn.classList.remove('btn-danger');
+        btn.classList.add('btn-outline-danger');
+        btn.innerHTML = '<i class="bi bi-heart"></i>';
+      }
+    }
+  </script>
+
+</body>
+</html>

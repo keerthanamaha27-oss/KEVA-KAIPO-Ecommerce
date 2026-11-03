@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Saved Remedies (Wishlist) | AyurVeda Naturals</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Ayurvedic CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar">
+    <div class="container top-bar-content">
+      <div>
+        <span>🌿 100% Classical AYUSH Certified Formulations • Free Shipping on orders over ₹999</span>
+      </div>
+      <div class="social-top-links">
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp"></i> WhatsApp Order: +91 98765 43210
+        </a>
+        <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener">
+          <i class="bi bi-instagram"></i> @ayur.veda.wellness
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <div class="brand-icon">🍃</div>
+          <div>
+            <span>AyurVeda Naturals</span>
+            <small class="d-block" style="font-size: 10px; font-family: var(--font-sans); color: var(--gold-dark); letter-spacing: 1px; font-weight: normal;">SHUDDHA AYUSH PHARMACY</small>
+          </div>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Ayurvedic Remedies</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact & Clinic</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin-orders.html">Store Admin</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3">
+            <a href="wishlist.html" class="header-action-btn active" title="My Wishlist">
+              <i class="bi bi-heart"></i>
+              <span class="badge-count wishlist-count-badge" style="display:none;">0</span>
+            </a>
+            <a href="cart.html" class="header-action-btn" title="Shopping Cart">
+              <i class="bi bi-bag"></i>
+              <span class="badge-count cart-count-badge" style="display:none;">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h3 fw-bold mb-0" style="font-family: var(--font-serif); color: var(--primary-deep);">Your Saved Formulations (Wishlist)</h2>
+          <small class="text-muted">Items you've bookmarked for your holistic wellness regimen.</small>
+        </div>
+        <a href="products.html" class="btn btn-outline-dark btn-sm">Explore More Remedies</a>
+      </div>
+
+      <div class="row g-4" id="wishlist-container">
+        <!-- Rendered items -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="wishlist-empty-state" class="text-center py-5 bg-white rounded-4 border shadow-sm" style="display: none;">
+        <div style="font-size: 54px;">💚</div>
+        <h3 class="mt-3 fw-bold" style="font-family: var(--font-serif); color: var(--primary-deep);">Your Wishlist is Empty</h3>
+        <p class="text-muted max-w-md mx-auto">Explore our range of classical herbal Rasayanas, pure Shilajit, and Kumkumadi saffron tailam and click the heart icon to save.</p>
+        <a href="products.html" class="btn btn-vedic-primary mt-2">
+          <i class="bi bi-bag"></i> Browse Formulations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Sticky WhatsApp & Instagram Quick Commerce Buttons -->
+  <div class="floating-commerce-bar">
+    <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="floating-commerce-btn floating-whatsapp" title="WhatsApp Order">
+      <i class="bi bi-whatsapp"></i>
+      <span class="tooltip-label">Chat & Order via WhatsApp</span>
+    </a>
+    <a href="https://instagram.com/ayur.veda.wellness" target="_blank" rel="noopener" class="floating-commerce-btn floating-instagram" title="Instagram Shop">
+      <i class="bi bi-instagram"></i>
+      <span class="tooltip-label">Instagram: @ayur.veda.wellness</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container text-center">
+      <p>© 2026 AyurVeda Naturals. TH Assessment 1: CSI3029 Front End Design and Testing | Faculty: Dr. V. Arulkumar (18875).</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', renderWishlist);
+
+    function renderWishlist() {
+      const wishlistIds = WishlistState.getWishlist();
+      const container = document.getElementById('wishlist-container');
+      const emptyState = document.getElementById('wishlist-empty-state');
+
+      if (wishlistIds.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      const items = AYUR_PRODUCTS.filter(p => wishlistIds.includes(p.id));
+
+      container.innerHTML = items.map(p => {
+        const waUrl = SocialCommerce.getProductWhatsAppUrl(p);
+
+        return `
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+              <div style="height: 200px; overflow: hidden; position: relative;">
+                <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle" onclick="removeWishlistItem('${p.id}')" title="Remove">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <span class="product-category-tag">${p.category}</span>
+                <h5 class="fw-bold mb-1"><a href="product-detail.html?id=${p.id}" class="text-dark">${p.name}</a></h5>
+                <small class="text-muted fst-italic mb-2">${p.sanskritName}</small>
+                <div class="fw-bold text-success fs-5 mb-3">₹${p.price}</div>
+                <div class="d-flex gap-2 mt-auto">
+                  <button class="btn btn-vedic-dark btn-sm flex-grow-1" onclick="moveToCart('${p.id}')">
+                    <i class="bi bi-cart-plus"></i> Move to Cart
+                  </button>
+                  <a href="${waUrl}" target="_blank" class="btn btn-whatsapp-direct btn-sm">
+                    <i class="bi bi-whatsapp"></i> Buy via WA
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function removeWishlistItem(id) {
+      WishlistState.toggle(id);
+      renderWishlist();
+    }
+
+    function moveToCart(id) {
+      CartState.addItem(id);
+      WishlistState.toggle(id);
+      renderWishlist();
+    }
+  </script>
+</body>
+</html>

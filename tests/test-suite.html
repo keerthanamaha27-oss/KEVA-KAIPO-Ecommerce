@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEVA KAIPO | Genuine Website Testing</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --green: #1b4332;
+      --herbal: #2d6a4f;
+      --gold: #d4af37;
+      --background: #f3f6f4;
+    }
+
+    body {
+      background: var(--background);
+      color: #24352c;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .header {
+      background: var(--green);
+      color: white;
+      border-bottom: 3px solid var(--gold);
+      padding: 22px 0;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+    }
+
+    .brand-title {
+      font-family: Georgia, serif;
+      font-weight: bold;
+    }
+
+    .brand-subtitle {
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    .metric {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.05);
+      height: 100%;
+    }
+
+    .metric small {
+      color: #718078;
+      font-weight: bold;
+    }
+
+    .metric h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin: 8px 0 0;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.05);
+    }
+
+    .test-card {
+      border: 1px solid #e2e8e3;
+      border-left: 5px solid #aab7af;
+      border-radius: 9px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .test-card.pass { border-left-color: #15945e; }
+    .test-card.fail { border-left-color: #dc3545; }
+    .test-card.skip { border-left-color: #d4a017; }
+
+    .badge-pass { background: #15945e; }
+    .badge-fail { background: #dc3545; }
+    .badge-skip { background: #d4a017; color: #172a20; }
+
+    .test-description {
+      color: #718078;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    .test-output {
+      background: #172a20;
+      color: #a7f3d0;
+      border-radius: 7px;
+      padding: 12px;
+      margin-top: 10px;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .test-output.error {
+      background: #351b20;
+      color: #ffb4b4;
+    }
+
+    .test-output.skipped {
+      background: #fff8e1;
+      color: #795900;
+    }
+
+    .progress {
+      height: 9px;
+      background: #e8eee9;
+    }
+
+    .progress-bar {
+      background: #15945e;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 22px;
+      color: #718078;
+      font-size: 12px;
+    }
+
+    @media(max-width:767px) {
+      .header .container {
+        flex-direction: column;
+        align-items: flex-start !important;
+      }
+
+      .panel { padding: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="brand-icon">🍃</div>
+
+      <div>
+        <h1 class="h4 brand-title mb-0">KEVA KAIPO</h1>
+        <div class="brand-subtitle">SRI MAHALAKSHMI & CO.</div>
+        <small class="text-white-50">Genuine Website Testing Dashboard</small>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-warning fw-bold" id="run-tests">
+        <i class="bi bi-play-fill"></i> Run Tests
+      </button>
+
+      <a href="../index.html" class="btn btn-outline-light">
+        <i class="bi bi-shop"></i> Return to Store
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="container py-4">
+
+  <section class="panel mb-4">
+    <div class="text-success fw-bold small">QUALITY VALIDATION</div>
+
+    <h2 class="h4 fw-bold mt-2">
+      Genuine Website Functional Testing
+    </h2>
+
+    <p class="text-muted mb-2">
+      This dashboard checks the actual KEVA KAIPO website configuration
+      and existing customer records. It does not create demo customers,
+      test orders or modify customer data.
+    </p>
+
+    <small class="text-muted">
+      Last execution: <span id="last-run">Not started</span>
+    </small>
+  </section>
+
+
+  <!-- Metrics -->
+  <section class="row g-3 mb-4">
+
+    <div class="col-md-3 col-6">
+      <div class="metric">
+        <small>TOTAL TESTS</small>
+        <h2 id="total-tests">12</h2>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="metric">
+        <small>PASSED</small>
+        <h2 class="text-success" id="passed-tests">0</h2>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="metric">
+        <small>FAILED</small>
+        <h2 class="text-danger" id="failed-tests">0</h2>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+      <div class="metric">
+        <small>SKIPPED</small>
+        <h2 class="text-warning" id="skipped-tests">0</h2>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="panel mb-4">
+
+    <div class="d-flex justify-content-between mb-2">
+      <strong>Test Execution Progress</strong>
+      <span id="progress-label" class="text-muted small">0 of 12 completed</span>
+    </div>
+
+    <div class="progress">
+      <div
+        id="progress-bar"
+        class="progress-bar"
+        style="width:0%"
+      ></div>
+    </div>
+
+    <div class="mt-3">
+      <strong>Pass Rate:</strong>
+      <span id="pass-rate" class="text-success fw-bold">0%</span>
+      <small class="text-muted ms-2">
+        (Passed ÷ executed tests; skipped tests excluded)
+      </small>
+    </div>
+
+  </section>
+
+
+  <!-- Results -->
+  <section class="panel">
+
+    <div class="d-flex justify-content-between flex-wrap gap-2 mb-4">
+      <div>
+        <div class="text-success fw-bold small">REAL APPLICATION DATA</div>
+        <h3 class="h5 fw-bold mt-1">Automated Test Results</h3>
+      </div>
+
+      <span class="badge bg-light text-dark border align-self-start" id="run-status">
+        Ready
+      </span>
+    </div>
+
+    <div id="results">
+      <p class="text-muted">Press Run Tests to begin validation.</p>
+    </div>
+
+  </section>
+
+
+  <div class="footer">
+    © 2026 KEVA KAIPO | SRI MAHALAKSHMI & CO.
+    <br>
+    Genuine data validation — no automatically generated customer orders.
+  </div>
+
+</main>
+
+
+<script src="../js/products-data.js"></script>
+<script src="../js/app.js"></script>
+
+<script>
+
+// ==========================================
+// TEST UTILITIES
+// ==========================================
+
+function skipTest(reason) {
+  const error = new Error(reason);
+  error.isSkipped = true;
+  throw error;
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+
+// ==========================================
+// READ-ONLY TEST CASES
+// ==========================================
+
+const tests = [
+
+  {
+    id: "TC-01",
+    title: "Product Catalogue Availability",
+    description: "Checks the actual product catalogue.",
+
+    run: () => {
+      assert(
+        Array.isArray(AYUR_PRODUCTS),
+        "Product catalogue is not available."
+      );
+
+      assert(
+        AYUR_PRODUCTS.length > 0,
+        "No products are configured."
+      );
+
+      return `${AYUR_PRODUCTS.length} actual products found.`;
+    }
+  },
+
+  {
+    id: "TC-02",
+    title: "Product Information Validation",
+    description: "Checks actual product IDs, names and prices.",
+
+    run: () => {
+      const invalid = AYUR_PRODUCTS.filter(product =>
+        !product.id ||
+        !product.name ||
+        typeof product.price !== "number" ||
+        product.price <= 0
+      );
+
+      assert(
+        invalid.length === 0,
+        `${invalid.length} product record(s) have invalid information.`
+      );
+
+      return "All product records contain valid IDs, names and prices.";
+    }
+  },
+
+  {
+    id: "TC-03",
+    title: "Store Configuration Validation",
+    description: "Checks the actual store configuration.",
+
+    run: () => {
+      assert(
+        typeof SHOP_CONFIG === "object" && SHOP_CONFIG !== null,
+        "Store configuration is missing."
+      );
+
+      assert(
+        Number.isFinite(SHOP_CONFIG.freeShippingThreshold),
+        "Free shipping threshold is missing."
+      );
+
+      assert(
+        Number.isFinite(SHOP_CONFIG.shippingFee),
+        "Shipping fee is missing."
+      );
+
+      assert(
+        Number.isFinite(SHOP_CONFIG.taxRate),
+        "Tax rate is missing."
+      );
+
+      return "Store configuration fields are available.";
+    }
+  },
+
+  {
+    id: "TC-04",
+    title: "Existing Cart Data Validation",
+    description: "Reads the current customer's cart without changing it.",
+
+    run: () => {
+      const cart = CartState.getCart();
+
+      assert(Array.isArray(cart), "Cart data is invalid.");
+
+      const invalid = cart.filter(item =>
+        !item.id ||
+        !item.name ||
+        !Number.isFinite(item.price) ||
+        !Number.isFinite(item.quantity) ||
+        item.quantity <= 0
+      );
+
+      assert(
+        invalid.length === 0,
+        "One or more cart records contain invalid information."
+      );
+
+      return `${cart.length} actual cart product record(s) checked.`;
+    }
+  },
+
+  {
+    id: "TC-05",
+    title: "Existing Cart Total Validation",
+    description: "Checks the current cart calculation without adding products.",
+
+    run: () => {
+      const cart = CartState.getCart();
+      const totals = CartState.getTotals();
+
+      const expectedSubtotal = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+
+      assert(
+        totals.subtotal === expectedSubtotal,
+        "Cart subtotal does not match actual cart items."
+      );
+
+      assert(
+        totals.itemCount === cart.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        ),
+        "Cart item count is incorrect."
+      );
+
+      return `Current cart subtotal verified: ₹${totals.subtotal}.`;
+    }
+  },
+
+  {
+    id: "TC-06",
+    title: "Existing Wishlist Validation",
+    description: "Reads the actual wishlist without adding or removing products.",
+
+    run: () => {
+      const wishlist = WishlistState.getWishlist();
+
+      assert(
+        Array.isArray(wishlist),
+        "Wishlist data is invalid."
+      );
+
+      const unknown = wishlist.filter(id =>
+        !AYUR_PRODUCTS.some(product => product.id === id)
+      );
+
+      assert(
+        unknown.length === 0,
+        "Wishlist contains product IDs not found in the catalogue."
+      );
+
+      return `${wishlist.length} actual wishlist item(s) checked.`;
+    }
+  },
+
+  {
+    id: "TC-07",
+    title: "Genuine Customer Order Availability",
+    description: "Reads customer orders placed through the website checkout.",
+
+    run: () => {
+      const orders = OrderService.getOrders();
+
+      assert(
+        Array.isArray(orders),
+        "Order storage is invalid."
+      );
+
+      if (orders.length === 0) {
+        skipTest("No genuine customer orders are available yet. Place an actual order through checkout.");
+      }
+
+      return `${orders.length} existing customer order(s) found.`;
+    }
+  },
+
+  {
+    id: "TC-08",
+    title: "Genuine Customer Information",
+    description: "Checks customer details in existing orders.",
+
+    run: () => {
+      const orders = OrderService.getOrders();
+
+      if (orders.length === 0) {
+        skipTest("No customer orders available to validate.");
+      }
+
+      const invalid = orders.filter(order =>
+        !order.orderId ||
+        !order.customer ||
+        !order.customer.name ||
+        !order.customer.phone ||
+        !order.customer.email
+      );
+
+      assert(
+        invalid.length === 0,
+        `${invalid.length} order(s) have incomplete customer details.`
+      );
+
+      return `${orders.length} genuine customer record(s) checked.`;
+    }
+  },
+
+  {
+    id: "TC-09",
+    title: "Genuine Order Product and Amount Validation",
+    description: "Checks actual order items and recorded totals.",
+
+    run: () => {
+      const orders = OrderService.getOrders();
+
+      if (orders.length === 0) {
+        skipTest("No genuine orders available for amount validation.");
+      }
+
+      const invalid = orders.filter(order => {
+        if (!Array.isArray(order.items) || order.items.length === 0) {
+          return true;
+        }
+
+        if (!order.financials) {
+          return true;
+        }
+
+        return !Number.isFinite(
+          Number(order.financials.grandTotal)
+        );
+      });
+
+      assert(
+        invalid.length === 0,
+        `${invalid.length} order(s) have invalid items or financial records.`
+      );
+
+      return `${orders.length} actual order financial record(s) checked.`;
+    }
+  },
+
+  {
+    id: "TC-10",
+    title: "Genuine Order Status Validation",
+    description: "Checks statuses of actual customer orders.",
+
+    run: () => {
+      const orders = OrderService.getOrders();
+
+      if (orders.length === 0) {
+        skipTest("No genuine orders available for status validation.");
+      }
+
+      const allowed = [
+        "Placed",
+        "Approved",
+        "Shipped",
+        "Delivered",
+        "Cancelled"
+      ];
+
+      const invalid = orders.filter(
+        order => !allowed.includes(order.status)
+      );
+
+      assert(
+        invalid.length === 0,
+        `${invalid.length} order(s) have unrecognised statuses.`
+      );
+
+      return `${orders.length} genuine order status(es) verified.`;
+    }
+  },
+
+  {
+    id: "TC-11",
+    title: "Website Page Availability",
+    description: "Checks that important store pages are accessible.",
+
+    run: async () => {
+      const pages = [
+        "../index.html",
+        "../products.html",
+        "../product-detail.html",
+        "../cart.html",
+        "../contact.html",
+        "../about.html",
+        "../admin-orders.html"
+      ];
+
+      const results = await Promise.all(
+        pages.map(async page => {
+          const response = await fetch(page, {
+            method: "GET",
+            cache: "no-store"
+          });
+
+          return {
+            page,
+            ok: response.ok,
+            status: response.status
+          };
+        })
+      );
+
+      const failedPages = results.filter(result => !result.ok);
+
+      assert(
+        failedPages.length === 0,
+        "Unavailable page(s): " +
+        failedPages.map(page => page.page).join(", ")
+      );
+
+      return `${results.length} store pages are accessible.`;
+    }
+  },
+
+  {
+    id: "TC-12",
+    title: "WhatsApp Removal Verification",
+    description: "Checks that the testing dashboard does not contain WhatsApp links.",
+
+    run: () => {
+      const links = Array.from(
+        document.querySelectorAll("a[href]")
+      ).filter(link =>
+        /wa\.me|api\.whatsapp/i.test(link.href)
+      );
+
+      assert(
+        links.length === 0,
+        "WhatsApp links are still present in the testing dashboard."
+      );
+
+      return "No WhatsApp links found on the testing dashboard.";
+    }
+  }
+
+];
+
+
+// ==========================================
+// DISPLAY TEST RESULT
+// ==========================================
+
+function displayResult(test, status, message, duration) {
+
+  const container = document.getElementById("results");
+
+  const card = document.createElement("div");
+
+  card.className = "test-card " + status;
+
+  const badgeClass = {
+    pass: "badge-pass",
+    fail: "badge-fail",
+    skip: "badge-skip"
+  }[status];
+
+  const badgeText = {
+    pass: "PASS",
+    fail: "FAIL",
+    skip: "SKIPPED"
+  }[status];
+
+  const badgeIcon = {
+    pass: "check-circle-fill",
+    fail: "x-circle-fill",
+    skip: "dash-circle-fill"
+  }[status];
+
+  card.innerHTML = `
+    <div class="d-flex justify-content-between flex-wrap gap-2">
+      <div>
+        <span class="badge ${badgeClass} me-2">
+          <i class="bi bi-${badgeIcon}"></i> ${badgeText}
+        </span>
+        <strong></strong>
+      </div>
+      <small class="text-muted">${duration} ms</small>
+    </div>
+
+    <div class="test-description"></div>
+    <div class="test-output"></div>
+  `;
+
+  card.querySelector("strong").textContent =
+    `${test.id}: ${test.title}`;
+
+  card.querySelector(".test-description").textContent =
+    test.description;
+
+  const output = card.querySelector(".test-output");
+
+  output.textContent = message;
+
+  if (status === "fail") {
+    output.classList.add("error");
+  }
+
+  if (status === "skip") {
+    output.classList.add("skipped");
+  }
+
+  container.appendChild(card);
+}
+
+
+// ==========================================
+// RUN ALL TESTS
+// ==========================================
+
+async function runAllTests() {
+
+  const button = document.getElementById("run-tests");
+  const container = document.getElementById("results");
+
+  let passed = 0;
+  let failed = 0;
+  let skipped = 0;
+
+  button.disabled = true;
+  button.textContent = "Running Tests...";
+
+  container.innerHTML = "";
+
+  document.getElementById("run-status").textContent =
+    "Tests running";
+
+  for (const test of tests) {
+
+    const start = performance.now();
+
+    try {
+
+      const message = await test.run();
+
+      passed++;
+
+      displayResult(
+        test,
+        "pass",
+        "✓ " + message,
+        (performance.now() - start).toFixed(2)
+      );
+
+    } catch (error) {
+
+      if (error.isSkipped) {
+
+        skipped++;
+
+        displayResult(
+          test,
+          "skip",
+          "— " + error.message,
+          (performance.now() - start).toFixed(2)
+        );
+
+      } else {
+
+        failed++;
+
+        displayResult(
+          test,
+          "fail",
+          "✗ " + error.message,
+          (performance.now() - start).toFixed(2)
+        );
+
+      }
+
+    }
+
+  }
+
+  const total = tests.length;
+  const completed = passed + failed + skipped;
+  const executed = passed + failed;
+
+  const rate = executed === 0
+    ? 0
+    : Math.round((passed / executed) * 100);
+
+  document.getElementById("total-tests").textContent = total;
+  document.getElementById("passed-tests").textContent = passed;
+  document.getElementById("failed-tests").textContent = failed;
+  document.getElementById("skipped-tests").textContent = skipped;
+
+  document.getElementById("pass-rate").textContent =
+    rate + "%";
+
+  document.getElementById("progress-label").textContent =
+    `${completed} of ${total} completed`;
+
+  document.getElementById("progress-bar").style.width =
+    (completed / total * 100) + "%";
+
+  document.getElementById("last-run").textContent =
+    new Date().toLocaleString("en-IN");
+
+  document.getElementById("run-status").textContent =
+    failed === 0
+      ? "Execution completed"
+      : `${failed} test(s) failed`;
+
+  button.disabled = false;
+  button.innerHTML =
+    '<i class="bi bi-arrow-clockwise"></i> Run Tests Again';
+
+}
+
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
+document.getElementById("run-tests").addEventListener(
+  "click",
+  runAllTests
+);
+
+document.getElementById("total-tests").textContent =
+  tests.length;
+
+</script>
+
+</body>
+</html>
